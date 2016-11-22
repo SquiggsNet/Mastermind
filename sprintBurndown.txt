@@ -9,5 +9,5 @@
 ○Scrum Minutes
 ○Use Case
 •Activity Diagram
-○Design
+•Design
 ○Merge + Fix SAAD Docs
