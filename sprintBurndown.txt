@@ -8,6 +8,6 @@
 ○Burndown Chart
 ○Scrum Minutes
 ○Use Case
-○Activity Diagram
+•Activity Diagram
 ○Design
 ○Merge + Fix SAAD Docs
