@@ -6,7 +6,7 @@
 •Project Plan
 •Project Charter
 •Burndown Chart
-○Scrum Minutes
+•Scrum Minutes
 •Use Case
 •Activity Diagram
 •Design
