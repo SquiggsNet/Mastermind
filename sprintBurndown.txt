@@ -5,9 +5,9 @@
 
 •Project Plan
 •Project Charter
-○Burndown Chart
+•Burndown Chart
 ○Scrum Minutes
-○Use Case
+•Use Case
 •Activity Diagram
 •Design
 ○Merge + Fix SAAD Docs
