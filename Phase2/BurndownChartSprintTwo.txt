@@ -7,7 +7,7 @@ Sprint 2 Burndown Chart
 •	Burndown Chart
 •	Test Case – Initial Planning
 ○	Basic Design Implementation
-○	Establish solution (Completed by computer
+○	Establish solution (Completed by computer)
 ○	Create user entry
 ○	Validate user entry
 ○	Display Win/Lose Screen
