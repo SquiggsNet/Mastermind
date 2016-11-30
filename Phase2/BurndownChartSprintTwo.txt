@@ -4,8 +4,8 @@ Sprint 2 Burndown Chart
 • = complete (alt+7)
 
 •	Project Plan
-○	Burndown Chart
-○	Test Case – Initial Planning
+•	Burndown Chart
+•	Test Case – Initial Planning
 ○	Basic Design Implementation
 ○	Establish solution (Completed by computer
 ○	Create user entry
