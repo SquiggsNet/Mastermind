@@ -8,6 +8,7 @@
     var generatedSolution = ["blue", "orange", "purple", "green"];
     var timesCheckWasHit = 0;
     var needsChecking = false;
+    var difficultyRowLength = 0;        //used to determine number of tries available
 
     function insertSolutionTable()
     {
@@ -66,7 +67,7 @@
         //add table to div
         choicesDiv.appendChild(table);
 
-        for(var i=0; i<8; i++)//rowsExpected; i++)
+        for(var i=0; i<difficultyRowLength; i++)//rowsExpected; i++)
         {
             //create multiples rows (and for blocks for the solution to appear) for the solution to be contained.
             var row = document.createElement("tr");
@@ -123,7 +124,7 @@
 
 
 
-        for(var i=0; i<8; i++)//rowsExpected; i++)
+        for(var i=0; i<difficultyRowLength; i++)//rowsExpected; i++)
         {
             //create multiples rows (and for blocks for the solution to appear) for the solution to be contained.
             var row = document.createElement("tr");
@@ -219,12 +220,9 @@
     }
 
     function createSolution(){
-        var randInt;
-
         for(var i=0; i<4; i++){
-            randInt = Math.floor((Math.random() * 5) + 0);
-            var colour = colours[randInt];
-            generatedSolution[i] = colour;
+            var randInt = Math.floor((Math.random() * 5) + 0);
+            generatedSolution[i] = colours[randInt];
         }
     }
 
@@ -381,6 +379,25 @@
 
     function buildDefaults()
     {
+
+        for (var i = 0; i < difficulty.length; i++) {
+            if (difficulty[i].checked) {
+                var selectedDifficulty = difficulty[i].value;
+                break;
+            }
+        }
+
+        if(selectedDifficulty == "easy"){
+            difficultyRowLength = 12;
+        }else if(selectedDifficulty == "medium"){
+            difficultyRowLength = 10;
+        }else{
+            difficultyRowLength = 8;
+        }
+
+        document.getElementById("difficultyUserSelection").style.display = "none";
+        document.getElementById("mindMasterBoard").style.visibility = "visible";
+
         insertSolutionTable();
         insertChoicesMadeTable();
         insertAreYouRightTable();
@@ -400,6 +417,13 @@
         }
     }
 
-    buildDefaults();
+    var difficulty = document.getElementsByName("difficulty");
+    function establishDifficulty(){
+        for (var i=0;i<difficulty.length;i++){
+            difficulty[i].onclick = buildDefaults;
+        }
+    }
+
+    establishDifficulty();
 
 })();
