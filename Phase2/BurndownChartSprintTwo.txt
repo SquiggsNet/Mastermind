@@ -14,7 +14,7 @@ Sprint 2 Burndown Chart
 ○	Create restart functionality
 ○	Create difficulty selection
 ○	Create option for 2nd user solution generation
-○	Scrum minutes
+○	Scrum minutes (ongoing)
 ○	Complete testing and update Test Case & Plan
 ○	Project Retrospective
 ○	Proofread
