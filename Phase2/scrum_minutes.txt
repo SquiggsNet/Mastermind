@@ -1,4 +1,4 @@
-Monday November 28th:
+Tuesday November 29th:
 
 What was done since last scrum meeting?
 Sprint 1 completed and submitted
@@ -34,7 +34,7 @@ What was done?
 What needs to be done?
 -Establish computer generated solution
 -Create user entry
--Validate user entry
+-Check/ Remove user entry
 -Display Win/Lose Screen
 -Create restart functionality
 -Create difficulty selection
@@ -42,7 +42,7 @@ What needs to be done?
 -Complete Testing (Update Test Case)
 
 What stands in the way?
-???
+Implementing Angular
 
 ------------------------------------
 Wednesday December 7th:
