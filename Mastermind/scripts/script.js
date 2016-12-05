@@ -3,8 +3,11 @@
  */
 
 (function(){
+
     var colours = ["blue", "green", "yellow", "orange", "red", "purple"];
     var generatedSolution = ["blue", "orange", "purple", "green"];
+    var timesCheckWasHit = 0;
+    var needsChecking = false;
 
     function insertSolutionTable()
     {
@@ -215,16 +218,6 @@
 
     }
 
-    function buildDefaults()
-    {
-        insertSolutionTable();
-        insertChoicesMadeTable();
-        insertAreYouRightTable();
-        insertOptions();
-        createSolution();
-        insertSolution();
-    }
-
     function createSolution(){
         var randInt;
 
@@ -233,6 +226,248 @@
             var colour = colours[randInt];
             generatedSolution[i] = colour;
         }
+    }
+
+    function optionWasPicked(cell)
+    {
+        //grabbing only the colour, and setting a variable with the colour
+        var colour = "";
+        for(var c=13; c<cell.className.length; c++)
+        {
+            colour += cell.className[c];
+        }
+
+        //grab the current row
+        var currentRow = document.getElementsByClassName("choicesRow")[timesCheckWasHit];
+        var addColour;
+
+        //grab the cells in the row
+        var cells = currentRow.childNodes;
+
+        if(!needsChecking)
+        {
+            //if there is an empty cell, I want to stop everything from running
+            var foundEmpty = false;
+
+            //grab the cells in the row
+            cells = currentRow.childNodes;
+
+            //for loop for all the cells in the row
+            for(g=0; g<cells.length; g++)
+            {
+                //if an empty cell was found already, STOP THIS LOOP
+                if(foundEmpty)
+                {
+                    break;
+                }
+                //if there wasn't a cell found yet, make sure it's not 'choicesCell' as a classname (only)
+                else if(cells[g].className.length<12)
+                {
+                    //set the cell we want to add colour to, to the cell we just found
+                    addColour = cells[g];
+                    //tell the program that we have found an empty cell
+                    foundEmpty = true;
+
+                    //if there was an empty cell found (board isn't full yet), set the class to have the colour added
+                    addColour.className = "choicesCell " + colour;
+                    if(g == 3)
+                    {
+                        //if this is the last cell in the row, make it false
+                        needsChecking = true;
+                    }
+                }
+            }
+        }
+
+        //fetching the rows
+        /*var rows = document.getElementsByClassName("choicesRow");
+        var addColour;
+
+        var isFullRow = false;
+        var fullRow;
+
+        //for loop for all the rows
+        for(var i=0;i<rows.length;i++)
+        {
+            //check if an empty cell was found yet
+            if(isFullRow)
+            {
+                break;
+            }
+            //grab the cells in the row
+            var cells = rows[i].childNodes;
+            //check if the last cell has something in it
+            if(cells[3].className.length>12)
+            {
+                //if row 3 (0,1,2,3) is full, and times check is currently 3 (needs 4th check), then we have a full row
+                //(row 0 check1), (row1, check 2), (row2, check 3), (row3,check4)
+                if(timesCheckWasHit == i)
+                {
+                    isFullRow = true;
+                }
+
+            }
+        }
+
+
+        //check for an empty cell
+
+        if(!isFullRow)
+        {
+            //if there is an empty cell, I want to stop everything from running
+            var foundEmpty = false;
+            //for loop for all the rows
+            for(i=0;i<rows.length;i++)
+            {
+                //check if an empty cell was found yet
+                if(foundEmpty)
+                {
+                    break;
+                }
+                //grab the cells in the row
+                cells = rows[i].childNodes;
+                //for loop for all the cells in the row
+                for(g=0; g<cells.length; g++)
+                {
+                    //if an empty cell was found already, STOP THIS LOOP
+                    if(foundEmpty)
+                    {
+                        break;
+                    }
+                    //if there wasn't a cell found yet, make sure it's not 'choicesCell' as a classname (only)
+                    else if(cells[g].className.length<12)
+                    {
+                        //set the cell we want to add colour to, to the cell we just found
+                        addColour = cells[g];
+                        //tell the program that we have found an empty cell
+                        foundEmpty = true;
+                        if(g == 3)
+                        {
+                            //if this is the last cell in the row, make it false
+                            needsChecking = true;
+                        }
+                    }
+                }
+            }
+
+            if(foundEmpty)
+            {
+                //if there was an empty cell found (board isn't full yet), set the class to have the colour added
+                addColour.className = "choicesCell " + colour;
+            }
+        }*/
+        /*else
+        {
+            needsChecking = true;
+        }*/
+
+    }
+
+    function checkMePlease()
+    {
+
+        if(needsChecking)
+        {
+            //fetching the rows
+            var rows = document.getElementsByClassName("choicesRow");
+
+            /*var isFullRow = false;*/
+            var fullRow;
+
+            //for loop for all the rows
+            for(var i=0;i<rows.length;i++)
+            {
+                //check if an empty cell was found yet
+                /*if(isFullRow)
+                {
+                    fullRow = i;
+                    break;
+                }*/
+                //grab the cells in the row
+                var cells = rows[i].childNodes;
+                //check if the last cell has something in it
+                if(cells[3].className.length>12)
+                {
+                    //if row 3 (0,1,2,3) is full, and times check is currently 3 (needs 4th check), then we have a full row
+                    //(check 0), (row 0 check1), (row1, check 2), (row2, check 3), (row3,check4)
+                    if(timesCheckWasHit == i)
+                    {
+                        fullRow = i;
+                    }
+
+                }
+            }
+
+            //get the row that is the lastone that's full
+            var fullRowId = fullRow;
+            fullRow = document.getElementsByClassName("choicesRow")[fullRowId];
+            var fourCells = fullRow.childNodes;
+
+            //assuming no colours are in the right spot
+            var rightSpotRightColour = [false, false, false, false];
+
+            //checking if the colours match
+            for(i=0;i<fourCells.length;i++)
+            {
+                //choicesCell = 11 + space = 12
+                var colour = "";
+                for(var c=12; c<fourCells[i].className.length; c++)
+                {
+                    colour += fourCells[i].className[c];
+                }
+                if(colour == generatedSolution[i])
+                {
+                    rightSpotRightColour[i] = true;
+                }
+            }
+
+            var displayResultsRows = document.getElementsByClassName("rightRow");
+            var currentRow = displayResultsRows[fullRowId];
+            var answerCheckedCells = currentRow.childNodes;
+
+            for(i=0;i<answerCheckedCells.length; i++)
+            {
+                if(rightSpotRightColour[i])
+                {
+                    answerCheckedCells[i].className += " black";
+                }
+            }
+
+            timesCheckWasHit++;
+
+            needsChecking = false;
+        }
+
+    }
+
+    function addingEventListeners()
+    {
+
+        //options cells
+        var optionCells = document.getElementsByClassName("optionalCell");
+
+        for(var i=0; i<optionCells.length; i++)
+        {
+            optionCells[i].addEventListener("click", function(){optionWasPicked(this)});
+        }
+
+        //buttons
+        var removeOne = document.getElementById("removeOne");
+        removeOne.addEventListener("click", function(){removeLastCell()});
+
+        var checkMe = document.getElementById("checkMe");
+        checkMe.addEventListener("click", function(){checkMePlease()});
+    }
+
+    function buildDefaults()
+    {
+        insertSolutionTable();
+        insertChoicesMadeTable();
+        insertAreYouRightTable();
+        insertOptions();
+        createSolution();
+        addingEventListeners();
+        insertSolution();
     }
 
     function insertSolution(){
