@@ -3,6 +3,8 @@
  */
 
 (function(){
+    var colours = ["blue", "green", "yellow", "orange", "red", "purple"];
+    var generatedSolution = ["blue", "orange", "purple", "green"];
 
     function insertSolutionTable()
     {
@@ -15,7 +17,7 @@
         //add table to div
         solutionDiv.appendChild(table);
 
-        //create one row (and for blocks for the solution to appear) for the solution to be contained.
+        //create one row (and four blocks for the solution to appear) for the solution to be contained.
         var row = document.createElement("tr");
         var block1 = document.createElement("td");
         var block2 = document.createElement("td");
@@ -160,7 +162,7 @@
     {
 
         //colour choices
-        var colours = ["blue", "green", "yellow", "orange", "red", "purple"];
+
 
         //figure initial amounts of (tables, rows, cells)
         var amountOfCurrentTables = document.getElementsByTagName("table").length;
@@ -219,6 +221,28 @@
         insertChoicesMadeTable();
         insertAreYouRightTable();
         insertOptions();
+        createSolution();
+        insertSolution();
+    }
+
+    function createSolution(){
+        var randInt;
+
+        for(var i=0; i<4; i++){
+            randInt = Math.floor((Math.random() * 5) + 0);
+            var colour = colours[randInt];
+            generatedSolution[i] = colour;
+        }
+    }
+
+    function insertSolution(){
+
+
+        var solutionCells = document.getElementsByClassName("solutionCell");
+        for(var i=0; i<solutionCells.length; i++)
+        {
+            solutionCells[i].className += " "+generatedSolution[i];
+        }
     }
 
     buildDefaults();
