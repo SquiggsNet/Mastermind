@@ -1,6 +1,61 @@
-Monday December 5th:
-What was done?
+Monday November 28th:
 
-What needs to be done?
+What was done since last scrum meeting?
+Sprint 1 completed and submitted
+
+What needs to be done by next scrum meeting?
+-Project plan for sprint 2 created
+-Burndown Chart
 
 What stands in the way?
+???
+
+--------------------------------------
+Thursday November 30th:
+
+What was done?
+-Project plan for sprint 2 created
+-Burndown Chart
+
+What needs to be done?
+-Test Case (Initial Planning created)
+-Basic Design Implementation
+
+What stands in the way?
+???
+
+-------------------------------------
+Monday December 5th:
+
+What was done?
+-Basic Design Implementation
+-Test Case (Initial Planning created)
+
+What needs to be done?
+-Establish computer generated solution
+-Create user entry
+-Validate user entry
+-Display Win/Lose Screen
+-Create restart functionality
+-Create difficulty selection
+-Create option for 2nd player solution generation
+-Complete Testing (Update Test Case)
+
+What stands in the way?
+???
+
+------------------------------------
+Wednesday December 7th:
+
+What was done?
+**Insert what was accomplished**
+
+What needs to be done?
+-Project retrospective
+-proofread
+-Check tasks with ruberic
+-Citations
+-Buglist
+
+What stands in the way?
+???
