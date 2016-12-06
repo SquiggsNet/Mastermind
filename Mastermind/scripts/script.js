@@ -323,33 +323,28 @@
                 }
                 else
                 {
+                    var y;
                     for (var g = 0; g < solutionUsed.length; g++)
                     {
-                        colour = "";
-                        for(c=12; c<cells[i].className.length; c++)
+                        for(y=0; i<solutionUsed.length; y++)
                         {
-                            colour += cells[i].className[c];
-                            for(var y=0; i<solutionUsed.length; y++)
+                            if(colour == solutionUsed[y])
                             {
-                                if(colour == solutionUsed[y])
-                                {
-                                    soltuonUsed[y] = false;
-                                }
-                            }
-                        }
-                        if (colour == solutionUsed[g])
-                        {
-                            wrongSpotRightColour[i] = true;
-                            for(var y=0; i<solutionUsed.length; y++)
-                            {
-                                if(colour == solutionUsed[y])
-                                {
-                                    soltuonUsed[y] = false;
-                                }
+                                solutionUsed[y] = false;
                             }
                         }
                     }
-
+                    if (colour == solutionUsed[g])
+                    {
+                        wrongSpotRightColour[i] = true;
+                        for(y=0; i<solutionUsed.length; y++)
+                        {
+                            if(colour == solutionUsed[y])
+                            {
+                                solutionUsed[y] = false;
+                            }
+                        }
+                    }
                 }
 
             }
