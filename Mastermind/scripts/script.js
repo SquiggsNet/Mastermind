@@ -303,6 +303,10 @@
 
             //assuming no colours are in the right spot
             var rightSpotRightColour = [false, false, false, false];
+            //assuming no colours are ever there
+            var wrongSpotRightColour = [false, false, false, false];
+
+            var solutionUsed = generatedSolution;
 
             //checking if the colours match
             for(i=0;i<cells.length;i++)
@@ -313,10 +317,41 @@
                 {
                     colour += cells[i].className[c];
                 }
-                if(colour == generatedSolution[i])
+                if(colour == solutionUsed[i])
                 {
                     rightSpotRightColour[i] = true;
                 }
+                else
+                {
+                    for (var g = 0; g < solutionUsed.length; g++)
+                    {
+                        colour = "";
+                        for(c=12; c<cells[i].className.length; c++)
+                        {
+                            colour += cells[i].className[c];
+                            for(var y=0; i<solutionUsed.length; y++)
+                            {
+                                if(colour == solutionUsed[y])
+                                {
+                                    soltuonUsed[y] = false;
+                                }
+                            }
+                        }
+                        if (colour == solutionUsed[g])
+                        {
+                            wrongSpotRightColour[i] = true;
+                            for(var y=0; i<solutionUsed.length; y++)
+                            {
+                                if(colour == solutionUsed[y])
+                                {
+                                    soltuonUsed[y] = false;
+                                }
+                            }
+                        }
+                    }
+
+                }
+
             }
 
             var displayResultsRow = document.getElementsByClassName("rightRow")[timesCheckWasHit];
@@ -328,6 +363,11 @@
                 {
                     answerCheckedCells[i].className += " black";
                 }
+                else if(wrongSpotRightColour[i])
+                {
+                    answerCheckedCells[i].className += " white";
+                }
+
             }
 
             timesCheckWasHit++;
