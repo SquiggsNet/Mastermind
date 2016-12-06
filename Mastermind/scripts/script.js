@@ -320,30 +320,52 @@
                 if(colour == solutionUsed[i])
                 {
                     rightSpotRightColour[i] = true;
+                    solutionUsed[i] = false;
                 }
-                else
+                /*else
                 {
                     var y;
                     for (var g = 0; g < solutionUsed.length; g++)
                     {
-                        for(y=0; i<solutionUsed.length; y++)
+                        /!*for(y=0; i<solutionUsed.length; y++)
                         {
                             if(colour == solutionUsed[y])
                             {
                                 solutionUsed[y] = false;
                             }
+                        }*!/
+                        if (colour == solutionUsed[g])
+                        {
+                            wrongSpotRightColour[i] = true;
+                            solutionUsed[y] = false;
+                            /!*for(y=0; i<solutionUsed.length; y++)
+                            {
+                                if(colour == solutionUsed[y])
+                                {
+                                    solutionUsed[y] = false;
+                                }
+                            }*!/
                         }
                     }
+                }*/
+
+            }
+
+            //check if any of the right colours are in the wrong spot
+            for(i=0;i<cells.length;i++)
+            {
+                //choicesCell = 11 + space = 12
+                colour = "";
+                for(c=12; c<cells[i].className.length; c++)
+                {
+                    colour += cells[i].className[c];
+                }
+                for (g = 0; g < solutionUsed.length; g++)
+                {
                     if (colour == solutionUsed[g])
                     {
-                        wrongSpotRightColour[i] = true;
-                        for(y=0; i<solutionUsed.length; y++)
-                        {
-                            if(colour == solutionUsed[y])
-                            {
-                                solutionUsed[y] = false;
-                            }
-                        }
+                        wrongSpotRightColour[g] = true;
+                        solutionUsed[g] = false;
                     }
                 }
 
