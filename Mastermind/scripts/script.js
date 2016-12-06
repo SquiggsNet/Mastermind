@@ -355,6 +355,9 @@
 
             }
 
+            //call function to display win results
+            displayWin(rightSpotRightColour);
+
             //check if any of the right colours are in the wrong spot
             for(i=0;i<cells.length;i++)
             {
@@ -392,6 +395,11 @@
             }
 
             timesCheckWasHit++;
+
+            //if user hasn't guessed by the last row, call the loss function
+            if(!checkIfLastRow()){
+                displayLose();
+            }
 
             needsChecking = false;
         }
@@ -436,6 +444,9 @@
 
         var checkMe = document.getElementById("checkMe");
         checkMe.addEventListener("click", function(){checkMePlease()});
+
+        var checkMe = document.getElementById("restart");
+        checkMe.addEventListener("click", function(){restartGame()});
     }
 
     function buildDefaults()
@@ -457,7 +468,7 @@
         }
 
         document.getElementById("difficultyUserSelection").style.display = "none";
-        document.getElementById("mindMasterBoard").style.visibility = "visible";
+        document.getElementById("mindMasterBoard").style.display = "block";
 
         insertSolutionTable();
         insertChoicesMadeTable();
@@ -484,6 +495,46 @@
             difficulty[i].onclick = buildDefaults;
         }
     }
+
+    function displayWin(compareResult){
+
+        //if any cell is false return to game
+        for(var w=0;w<compareResult.length;w++){
+            if(!compareResult[w]){
+                return;
+            }
+        }
+
+        //hide game and display results upon game success
+        document.getElementById("mindMasterBoard").style.display = "none";
+        document.getElementById("gameResults").style.display = "block";
+        var winLose = document.getElementById("winLose");
+        winLose.innerHTML = "Congratulations! You have solved the puzzle."
+
+    }
+
+    function displayLose(){
+        //hide game and display results upon game success
+        document.getElementById("mindMasterBoard").style.display = "none";
+        document.getElementById("gameResults").style.display = "block";
+        var winLose = document.getElementById("winLose");
+        winLose.innerHTML = "Sorry! You were not able to solve the code in time and have been blown into a million bits."
+    }
+
+    function restartGame(){
+
+        //uncheck previously selected difficulty
+        var difficulty = document.getElementsByName("difficulty");
+        for (var i=0;i<difficulty.length;i++){
+            difficulty[i].checked = false;
+        }
+
+        //hide game results & display difficulty
+        document.getElementById("difficultyUserSelection").style.display = "block";
+        document.getElementById("gameResults").style.display = "none";
+
+    }
+
 
     establishDifficulty();
 

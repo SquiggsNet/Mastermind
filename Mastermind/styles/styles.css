@@ -1,7 +1,11 @@
 #mindMasterBoard {
     border: 3px solid mediumvioletred;
     width: 500px;
-    visibility: hidden;
+    display: none;
+}
+
+#gameResults{
+    display: none;
 }
 
 td {
