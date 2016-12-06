@@ -306,10 +306,14 @@
             //assuming no colours are ever there
             var wrongSpotRightColour = [false, false, false, false];
 
-            var solutionUsed = generatedSolution;
+            var solutionUsed = [0,0,0,0];
+            for(var m=0; m<generatedSolution.length; m++)
+            {
+                solutionUsed[m] = generatedSolution[m];
+            }
 
             //checking if the colours match
-            for(i=0;i<cells.length;i++)
+            for(var i=0;i<cells.length;i++)
             {
                 //choicesCell = 11 + space = 12
                 var colour = "";
