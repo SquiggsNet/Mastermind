@@ -8,6 +8,10 @@
     display: none;
 }
 
+#difficultyUserSelection{
+    display: none;
+}
+
 td {
     border-radius: 50%;
 }

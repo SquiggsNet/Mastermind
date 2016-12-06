@@ -496,6 +496,19 @@
         }
     }
 
+    var numPlayers = document.getElementsByName("numPlayers");
+    function numberOfPlayers(){
+        for (var i=0;i<numPlayers.length;i++){
+            numPlayers[i].onclick = playerTwo;
+        }
+    }
+
+    function playerTwo(){
+        document.getElementById("difficultyUserSelection").style.display = "block";
+        document.getElementById("playerSelection").style.display = "none";
+        establishDifficulty();
+    }
+
     function displayWin(compareResult){
 
         //if any cell is false return to game
@@ -529,13 +542,18 @@
             difficulty[i].checked = false;
         }
 
+        //uncheck player selection
+        var numPlayers = document.getElementsByName("numPlayers");
+        for (var i=0;i<numPlayers.length;i++){
+            numPlayers[i].checked = false;
+        }
+
         //hide game results & display difficulty
-        document.getElementById("difficultyUserSelection").style.display = "block";
+        document.getElementById("playerSelection").style.display = "block";
         document.getElementById("gameResults").style.display = "none";
 
     }
 
-
-    establishDifficulty();
+    numberOfPlayers();
 
 })();
