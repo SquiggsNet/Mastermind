@@ -445,8 +445,8 @@
         var checkMe = document.getElementById("checkMe");
         checkMe.addEventListener("click", function(){checkMePlease()});
 
-        var checkMe = document.getElementById("restart");
-        checkMe.addEventListener("click", function(){restartGame()});
+        var startOver = document.getElementById("restart");
+        startOver.addEventListener("click", function(){restartGame()});
     }
 
     function buildDefaults()
@@ -476,10 +476,10 @@
         insertOptions();
         createSolution();
         addingEventListeners();
-        insertSolution();
+        //displaySolution();
     }
 
-    function insertSolution(){
+    function displaySolution(){
 
 
         var solutionCells = document.getElementsByClassName("solutionCell");
@@ -511,6 +511,8 @@
 
     function displayWin(compareResult){
 
+        displaySolution();
+
         //if any cell is false return to game
         for(var w=0;w<compareResult.length;w++){
             if(!compareResult[w]){
@@ -519,7 +521,7 @@
         }
 
         //hide game and display results upon game success
-        document.getElementById("mindMasterBoard").style.display = "none";
+        //document.getElementById("mindMasterBoard").style.display = "none";
         document.getElementById("gameResults").style.display = "block";
         var winLose = document.getElementById("winLose");
         winLose.innerHTML = "Congratulations! You have solved the puzzle."
@@ -527,14 +529,42 @@
     }
 
     function displayLose(){
+
         //hide game and display results upon game success
-        document.getElementById("mindMasterBoard").style.display = "none";
+        //document.getElementById("mindMasterBoard").style.display = "none";
         document.getElementById("gameResults").style.display = "block";
         var winLose = document.getElementById("winLose");
         winLose.innerHTML = "Sorry! You were not able to solve the code in time and have been blown into a million bits."
+
+        displaySolution();
+
     }
 
     function restartGame(){
+
+        //remove all the tables
+        var div = document.getElementById("solution");
+        /*var table = document.getElementsByClassName("solutionTable")[0];
+        div.removeChild(table);*/
+        var table = div.childNodes[0];
+        table.remove();
+        /*div.removeAttribute("table");*/
+
+        div=document.getElementById("choicesMade");
+        //table = document.getElementsByClassName("choicesTable")[0];
+        //div.removeAttribute("table");
+        table = div.childNodes[0];
+        table.remove();
+
+        div=document.getElementById("areYouRight");
+        table = div.childNodes[0];
+        table.remove();
+        //div.removeAttribute("table");
+
+        div=document.getElementById("optionalChoices");
+        table = div.childNodes[0];
+        table.remove();
+        //div.removeAttribute("table");
 
         //uncheck previously selected difficulty
         var difficulty = document.getElementsByName("difficulty");
@@ -544,13 +574,22 @@
 
         //uncheck player selection
         var numPlayers = document.getElementsByName("numPlayers");
-        for (var i=0;i<numPlayers.length;i++){
+        for (i=0;i<numPlayers.length;i++){
             numPlayers[i].checked = false;
         }
 
         //hide game results & display difficulty
+        document.getElementById("mindMasterBoard").style.display = "none";
         document.getElementById("playerSelection").style.display = "block";
         document.getElementById("gameResults").style.display = "none";
+
+        colours = ["blue", "green", "yellow", "orange", "red", "purple"];
+        generatedSolution = ["blue", "orange", "purple", "green"];
+        timesCheckWasHit = 0;
+        needsChecking = false;
+        difficultyRowLength = 0;
+
+        numberOfPlayers();
 
     }
 
