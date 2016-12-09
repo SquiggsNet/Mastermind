@@ -8,7 +8,11 @@
     display: none;
 }
 
-#difficultyUserSelection{
+#playerSelection{
+    display: none;
+}
+
+#playerSolutionSelection{
     display: none;
 }
 
@@ -101,6 +105,8 @@ td {
 
 }
 
+
+
 .optionalRow {
 }
 
@@ -110,6 +116,17 @@ td {
     /*border: 3px solid indigo;*/
 }
 
+.solutionChoicesCell {
+    width: 70px;
+    height: 70px;
+    /*border: 3px solid indigo;*/
+}
+
+.solutionChoicesTable {
+    /*border-collapse: collapse;*/
+    margin: 0 auto;
+
+}
 /*Colours*/
 
 .blue {

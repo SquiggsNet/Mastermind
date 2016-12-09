@@ -5,9 +5,10 @@
 (function(){
 
     var colours = ["blue", "green", "yellow", "orange", "red", "purple"];
-    var generatedSolution = ["blue", "orange", "purple", "green"];
+    var generatedSolution = ["", "", "", ""];
     var timesCheckWasHit = 0;
     var needsChecking = false;
+    var canCreateSolution = false;
     var difficultyRowLength = 0;        //used to determine number of tries available
 
     function insertSolutionTable()
@@ -219,11 +220,56 @@
 
     }
 
-    function createSolution(){
+    function generateSolution(){
         for(var i=0; i<4; i++){
             var randInt = Math.floor((Math.random() * 5) + 0);
             generatedSolution[i] = colours[randInt];
         }
+    }
+
+    function playerCreatedSolutionEstablished(){
+        var solutionCells = document.getElementsByClassName("solutionCell");
+
+        for (var c=0; c<solutionCells.length; c++){
+            if(solutionCells[c].className.length < 13){
+                canCreateSolution = false;
+            }else{
+                canCreateSolution = true;
+            }
+
+        }
+
+        if(canCreateSolution){
+            for(var i=0; i<4; i++){
+                generatedSolution[i] = solutionCells[i].className.split(' ')[1];
+                solutionCells[i].className = "solutionCell";
+            }
+            document.getElementById("playerSolutionSelection").style.display = "none";
+            addingGamePlayEventListeners();
+        }
+
+    }
+
+    function removeLastSolutionCell()
+    {
+
+        var solutionCells = document.getElementsByClassName("solutionCell");
+
+        var removed = false;
+
+        for(var i=solutionCells.length-1; i >= 0; i--)
+        {
+            if(removed)
+            {
+                break;
+            }
+            else if (solutionCells[i].className.length > 13)
+            {
+                solutionCells[i].className = "solutionCell";
+                break;
+            }
+        }
+        canCreateSolution = false;
     }
 
     function optionWasPicked(cell)
@@ -272,6 +318,23 @@
                         }
                     }
                 }
+            }
+        }
+    }
+
+    function solutionOptionWasPicked(cell)
+    {
+
+        //grab the solution row
+        var cells = document.getElementsByClassName("solutionCell");
+
+        //grab color selected
+        var colour = cell.className.split(' ')[1];
+
+        for (var c=0; c<cells.length; c++){
+            if(cells[c].className.length < 13){
+                cells[c].className = "solutionCell " + colour;
+                break;
             }
         }
     }
@@ -480,7 +543,7 @@
         needsChecking = false;
     }
 
-    function addingEventListeners()
+    function addingGamePlayEventListeners()
     {
 
         //options cells
@@ -490,6 +553,14 @@
         {
             optionCells[i].addEventListener("click", function(){optionWasPicked(this)});
         }
+
+        // //solution options cells
+        // var solutionChoicesCell = document.getElementsByClassName("solutionChoicesCell");
+        //
+        // for(var i=0; i<solutionChoicesCell.length; i++)
+        // {
+        //     solutionChoicesCell[i].addEventListener("click", function(){solutionWasPicked(this)});
+        // }
 
         //buttons
         var removeOne = document.getElementById("removeOne");
@@ -522,13 +593,15 @@
 
         document.getElementById("difficultyUserSelection").style.display = "none";
         document.getElementById("mindMasterBoard").style.display = "block";
+        document.getElementById("playerSelection").style.display = "block";
 
         insertSolutionTable();
         insertChoicesMadeTable();
         insertAreYouRightTable();
         insertOptions();
-        createSolution();
-        addingEventListeners();
+        //generateSolution();
+        // addingEventListeners();
+        numberOfPlayers();
         //displaySolution();
     }
 
@@ -552,14 +625,85 @@
     var numPlayers = document.getElementsByName("numPlayers");
     function numberOfPlayers(){
         for (var i=0;i<numPlayers.length;i++){
-            numPlayers[i].onclick = playerTwo;
+            numPlayers[i].onclick = playerCheck;
         }
     }
 
-    function playerTwo(){
-        document.getElementById("difficultyUserSelection").style.display = "block";
+    function playerCheck(){
+
+        for (var i = 0; i < numPlayers.length; i++) {
+            if (numPlayers[i].checked) {
+                var numberOfPlayers = numPlayers[i].value;
+                break;
+            }
+        }
+
+        if(numberOfPlayers == "one"){
+            generateSolution();
+            addingGamePlayEventListeners();
+        }else{
+            playerCreatedSolutionSelection();
+        }
+
         document.getElementById("playerSelection").style.display = "none";
-        establishDifficulty();
+    }
+
+    function playerCreatedSolutionSelection(){
+        //user inputs selection
+
+        //figure initial amounts of (tables, rows, cells)
+        var amountOfCurrentCells = document.getElementsByTagName("td").length;
+
+        var playerSolutionEntryDiv = document.getElementById("playerSolutionSelection");
+
+        //create table
+        var table = document.createElement("table");
+
+        //add table to div
+        playerSolutionEntryDiv.appendChild(table);
+
+        //create multiples rows (and for blocks for the solution to appear) for the solution to be contained.
+        var row = document.createElement("tr");
+        var block1 = document.createElement("td");
+        var block2 = document.createElement("td");
+        var block3 = document.createElement("td");
+        var block4 = document.createElement("td");
+        var block5 = document.createElement("td");
+        var block6 = document.createElement("td");
+
+        //add row and blocks to table
+        table.appendChild(row);
+        row.appendChild(block1);
+        row.appendChild(block2);
+        row.appendChild(block3);
+        row.appendChild(block4);
+        row.appendChild(block5);
+        row.appendChild(block6);
+
+
+        //add class to the solution table, row, and cells (blocks)
+        table.className = "solutionChoicesTable";
+
+        row.className = "SolutionChoicesRow";
+
+        document.getElementById("playerSolutionSelection").style.display = "block";
+
+        var playerCreate = document.getElementById("create");
+        playerCreate.addEventListener("click", function(){playerCreatedSolutionEstablished()});
+
+        var removeOneSolution = document.getElementById("removeOneSolution");
+        removeOneSolution.addEventListener("click", function(){removeLastSolutionCell()});
+
+
+        //var solutionChoicesCells = document.getElementsByTagName("td");
+        for(var i=0; i<row.childNodes.length; i++)
+        {
+            //grab the colour at the index of i - what was initially there (to get 0-5)
+            row.childNodes[i].className = "solutionChoicesCell " + colours[i];
+            row.childNodes[i].addEventListener("click", function(){solutionOptionWasPicked(this)});
+            /*choicesCells[i].id = colour;*/
+        }
+
     }
 
     function displayWin(compareResult){
@@ -643,7 +787,7 @@
         document.getElementById("gameResults").style.display = "none";
 
         colours = ["blue", "green", "yellow", "orange", "red", "purple"];
-        generatedSolution = ["blue", "orange", "purple", "green"];
+        generatedSolution = ["", "", "", ""];
         timesCheckWasHit = 0;
         needsChecking = false;
         difficultyRowLength = 0;
@@ -652,7 +796,6 @@
 
     }
 
-
-    numberOfPlayers();
+    establishDifficulty();
 
 })();
