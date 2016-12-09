@@ -356,12 +356,12 @@
             }
 
             //call function to display win results
-            if(displayWin(rightSpotRightColour))
+            /*if(displayWin(rightSpotRightColour))
             {
                 //if the win happens, then display the solution
                 displaySolution();
-            }
-            //displayWin(rightSpotRightColour);
+            }*/
+            displayWin(rightSpotRightColour);
 
             //check if any of the right colours are in the wrong spot
             for(i=0;i<cells.length;i++)
@@ -376,7 +376,7 @@
                 {
                     if (colour == solutionUsed[g])
                     {
-                        wrongSpotRightColour[g] = true;
+                        wrongSpotRightColour[i] = true;
                         solutionUsed[g] = false;
                     }
                 }
@@ -386,18 +386,65 @@
             var displayResultsRow = document.getElementsByClassName("rightRow")[timesCheckWasHit];
             var answerCheckedCells = displayResultsRow.childNodes;
 
-            for(i=0;i<answerCheckedCells.length; i++)
+            var whiteCount = 0;
+            var blackCount = 0;
+
+            for(i=0;i<wrongSpotRightColour.length;i++)
+            {
+                if(wrongSpotRightColour[i])
+                {
+                    whiteCount++;
+                }
+            }
+
+            for(i=0;i<rightSpotRightColour.length;i++)
+            {
+                if(rightSpotRightColour[i])
+                {
+                    blackCount++;
+                }
+            }
+
+            /*if(whiteCount > blackCount)
+            {
+                whiteCount = whiteCount - blackCount;
+            }*/
+
+            for(i=0;i<blackCount; i++)
+            {
+                answerCheckedCells[i].className += " black";
+            }
+
+            for(i=blackCount;i<whiteCount; i++)
+            {
+                answerCheckedCells[i].className += " white";
+            }
+
+            /*for(i=0;i<answerCheckedCells.length; i++)
+            {
+                /!*if(rightSpotRightColour[i])
+                 {
+                 answerCheckedCells[i].className += " black";
+                 }*!/
+                if(wrongSpotRightColour[i])
+                {
+                    answerCheckedCells[i].className += " white";
+                }
+
+            }*/
+
+            /*for(i=0;i<answerCheckedCells.length; i++)
             {
                 if(rightSpotRightColour[i])
                 {
                     answerCheckedCells[i].className += " black";
                 }
-                else if(wrongSpotRightColour[i])
+                /!*else if(wrongSpotRightColour[i])
                 {
                     answerCheckedCells[i].className += " white";
-                }
+                }*!/
 
-            }
+            }*/
 
             timesCheckWasHit++;
 
@@ -520,7 +567,7 @@
         //if any cell is false return to game
         for(var w=0;w<compareResult.length;w++){
             if(!compareResult[w]){
-                return;
+                return false;
             }
         }
 
@@ -528,7 +575,15 @@
         //document.getElementById("mindMasterBoard").style.display = "none";
         document.getElementById("gameResults").style.display = "block";
         var winLose = document.getElementById("winLose");
-        winLose.innerHTML = "Congratulations! You have solved the puzzle."
+        winLose.innerHTML = "Congratulations! You have solved the puzzle.";
+
+        div=document.getElementById("optionalChoices");
+        table = div.childNodes[0];
+        table.remove();
+
+        displaySolution();
+
+        return true;
 
     }
 
@@ -565,9 +620,9 @@
         table.remove();
         //div.removeAttribute("table");
 
-        div=document.getElementById("optionalChoices");
+        /*div=document.getElementById("optionalChoices");
         table = div.childNodes[0];
-        table.remove();
+        table.remove();*/
         //div.removeAttribute("table");
 
         //uncheck previously selected difficulty
