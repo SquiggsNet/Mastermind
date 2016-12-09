@@ -356,7 +356,12 @@
             }
 
             //call function to display win results
-            displayWin(rightSpotRightColour);
+            if(displayWin(rightSpotRightColour))
+            {
+                //if the win happens, then display the solution
+                displaySolution();
+            }
+            //displayWin(rightSpotRightColour);
 
             //check if any of the right colours are in the wrong spot
             for(i=0;i<cells.length;i++)
@@ -511,8 +516,6 @@
     }
 
     function displayWin(compareResult){
-
-        displaySolution();
 
         //if any cell is false return to game
         for(var w=0;w<compareResult.length;w++){
