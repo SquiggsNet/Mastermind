@@ -425,6 +425,7 @@
                 break;
             }
         }
+        needsChecking = false;
     }
 
     function addingEventListeners()
