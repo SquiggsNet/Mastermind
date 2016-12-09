@@ -22,7 +22,7 @@ What needs to be done?
 -Basic Design Implementation
 
 What stands in the way?
-???
+-???
 
 -------------------------------------
 Monday December 5th:
@@ -42,7 +42,49 @@ What needs to be done?
 -Complete Testing (Update Test Case)
 
 What stands in the way?
-Implementing Angular
+-Implementing Angular
+
+------------------------------------
+Tuesday, December 6:
+
+What was done?
+-Remove done (had a bug)
+-Check sort of done (multiple bugs)
+-Create difficulty selection
+-Computer Solution Established
+-User entry works
+-Updates of project plan
+
+What needs to be done?
+-Check/ Remove user entry need fixing
+-Display Win/Lose Screen
+-Create restart functionality
+-Create option for 2nd player solution generation
+-Complete Testing (Update Test Case)
+
+What stands in the way?
+-Time, Understanding someone else's code, minor testig
+
+------------------------------------
+Friday, December 9th:
+
+What was done?
+-Check user entry need fixing (many bugs still)
+-Display Win/Lose Screen
+-Create restart functionality
+-Updates of Project Plan
+
+What needs to be done?
+-Check/Remove user entry need fixing (minor for remove)
+-Fix Display Win/Lose Screen
+-Create option for 2nd player solution generation
+-Complete Testing (Update Test Case)
+
+What stands in the way?
+-User entry check is very finicky, having the time to fully check out each possible solution.
+-Restarting randomly didn't work one time.
+-Figuring out how to tackle the second player solution generation.
+-Other classes.
 
 ------------------------------------
 Wednesday December 7th:
