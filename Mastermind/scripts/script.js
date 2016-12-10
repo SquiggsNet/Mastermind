@@ -429,7 +429,14 @@
             //check if any of the right colours are in the wrong spot
             for(i=0;i<cells.length;i++)
             {
+                var removedOne = false;
                 //choicesCell = 11 + space = 12
+
+                if(removedOne)
+                {
+                    break;
+                }
+
                 colour = "";
                 for(c=12; c<cells[i].className.length; c++)
                 {
@@ -441,6 +448,8 @@
                     {
                         wrongSpotRightColour[i] = true;
                         solutionUsed[g] = false;
+                        removedOne = true;
+                        break;
                     }
                 }
 
@@ -478,7 +487,7 @@
                 answerCheckedCells[i].className += " black";
             }
 
-            for(i=blackCount;i<whiteCount; i++)
+            for(i=blackCount;i<whiteCount+blackCount; i++)
             {
                 answerCheckedCells[i].className += " white";
             }
