@@ -424,7 +424,7 @@
                 //if the win happens, then display the solution
                 displaySolution();
             }*/
-            displayWin(rightSpotRightColour);
+            /*displayWin(rightSpotRightColour);*/
 
             //check if any of the right colours are in the wrong spot
             for(i=0;i<cells.length;i++)
@@ -446,10 +446,14 @@
                 {
                     if (colour == solutionUsed[g])
                     {
-                        wrongSpotRightColour[i] = true;
-                        solutionUsed[g] = false;
-                        removedOne = true;
-                        break;
+                        if(rightSpotRightColour[i] == false)
+                        {
+                            wrongSpotRightColour[i] = true;
+                            solutionUsed[g] = false;
+                            removedOne = true;
+                            break;
+                        }
+
                     }
                 }
 
@@ -520,10 +524,23 @@
 
             timesCheckWasHit++;
 
-            //if user hasn't guessed by the last row, call the loss function
-            if(!checkIfLastRow()){
-                displayLose();
+
+            //check if there is a win. if there is, display win screen
+            if(checkWin(rightSpotRightColour))
+            {
+                displayWin(rightSpotRightColour);
             }
+            //else, check if we're on the last row
+            else
+            {
+                //if user hasn't guessed by the last row, call the loss function
+                if(!checkIfLastRow()){
+                    displayLose();
+                }
+            }
+
+
+
 
             needsChecking = false;
         }
@@ -715,14 +732,24 @@
 
     }
 
-    function displayWin(compareResult){
-
-        //if any cell is false return to game
+    function checkWin(compareResult)
+    {
         for(var w=0;w<compareResult.length;w++){
             if(!compareResult[w]){
                 return false;
             }
         }
+        return true;
+    }
+
+    function displayWin(){//compareResult){
+
+        //if any cell is false return to game
+        /*for(var w=0;w<compareResult.length;w++){
+            if(!compareResult[w]){
+                return false;
+            }
+        }*/
 
         //hide game and display results upon game success
         //document.getElementById("mindMasterBoard").style.display = "none";
@@ -792,7 +819,8 @@
 
         //hide game results & display difficulty
         document.getElementById("mindMasterBoard").style.display = "none";
-        document.getElementById("playerSelection").style.display = "block";
+        //document.getElementById("playerSelection").style.display = "block";
+        document.getElementById("difficultyUserSelection").style.display = "block";
         document.getElementById("gameResults").style.display = "none";
 
         colours = ["blue", "green", "yellow", "orange", "red", "purple"];
@@ -801,7 +829,8 @@
         needsChecking = false;
         difficultyRowLength = 0;
 
-        numberOfPlayers();
+        establishDifficulty();
+        //numberOfPlayers();
 
     }
 
