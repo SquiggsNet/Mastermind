@@ -6,18 +6,18 @@ Sprint 2 Burndown Chart
 •	Project Plan
 •	Burndown Chart
 •	Test Case – Initial Planning
-○	Basic Design Implementation
-○	Establish solution (Completed by computer)
-○	Create user entry
-○	Validate user entry
-○	Display Win/Lose Screen
-○	Create restart functionality
-○	Create difficulty selection
-○	Create option for 2nd user solution generation
+•	Basic Design Implementation
+•	Establish solution (Completed by computer)
+•	Create user entry
+•	Validate user entry
+•	Display Win/Lose Screen
+•	Create restart functionality
+•	Create difficulty selection
+•	Create option for 2nd user solution generation
 ○	Scrum minutes (ongoing)
-○	Complete testing and update Test Case & Plan
-○	Project Retrospective
+•	Complete testing and update Test Case & Plan
+•	Project Retrospective
 ○	Proofread
 ○	Check tasks with rubric
 ○	Citations
-○	Bug List
+•	Bug List
