@@ -773,7 +773,11 @@
         //document.getElementById("mindMasterBoard").style.display = "none";
         document.getElementById("gameResults").style.display = "block";
         var winLose = document.getElementById("winLose");
-        winLose.innerHTML = "Sorry! You were not able to solve the code in time and have been blown into a million bits."
+        winLose.innerHTML = "Sorry! You were not able to solve the code in time and have been blown into a million bits.";
+
+        div=document.getElementById("optionalChoices");
+        table = div.childNodes[0];
+        table.remove();
 
         displaySolution();
 
