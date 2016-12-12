@@ -87,17 +87,24 @@ What stands in the way?
 -Other classes.
 
 ------------------------------------
-Wednesday December 7th:
+Monday December 12th:
 
 What was done?
-**Insert what was accomplished**
+-Check/Remove user entry fixed
+-Restart fixed again
+-Complete Testing (Update Test Case) (tested)
+-Bug List
+-Fix Display Win/Lose Screen
+-Project retrospective
+-Check tasks with ruberic
+-Project Plan updated
+-Burndown chart updated
+-proofread
+-minor bug fixes
 
 What needs to be done?
--Project retrospective
--proofread
--Check tasks with ruberic
--Citations
--Buglist
+-hand into the dropbox
+-download from github
 
 What stands in the way?
-???
+-snow
