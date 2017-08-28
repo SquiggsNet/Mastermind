@@ -202,14 +202,14 @@ function validateGuess(solution, currentRow, attempts){
     if(blackPeggs === 4){
         $(".gameOver").show();
         populateSolution(solution);
-        $("#selectedNumberOfPlayers").text("win");
+        $("#isWinner").text("win");
         return;
     }
 
     if(attempts === (currentRow+1)){
         $(".gameOver").show();
         populateSolution(solution);
-        $("#selectedNumberOfPlayers").text("lose");
+        $("#isWinner").text("lose");
         return;
     }
 };
