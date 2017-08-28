@@ -1,132 +1,210 @@
-#mindMasterBoard {
-    border: 3px solid mediumvioletred;
-    width: 500px;
-    display: none;
+body{
+    width: 100%;
+    margin: 0;
+    background-color: #DF744A;
+    /*color: #DCB239;*/
 }
 
-#gameResults{
-    display: none;
+#header{
+    background-color: #8FD8D2;
+    color: #DF744A;
+    height: 60px;
+    margin-top: 0;
+    padding-top: 20px;
 }
 
-#playerSelection{
-    display: none;
+#header > h1{
+    color: #DF744A;
+    margin: 0;
+    text-align: center;
+}
+#restart{
+    float: left;
+    margin-left: 20px;
 }
 
-#playerSolutionSelection{
-    display: none;
+#help{
+    float: right;
+    margin-right: 20px;
+}
+.headerBtn{
+	background-color: transparent;
+	color: #DF744A;
+	height: 40px;
+    width: 40px;
+    font-weight: bold;
+    font-size: 20px;
+	border: solid #DF744A;
+	border-radius: 5px;
+    margin-top: -50px;
+}
+
+.headerBtn:hover{
+	color: #8FD8D2;
+	background-color: #DF744A;
+}
+
+/* Overlay instructiuons found at https://www.w3schools.com/howto/howto_js_fullscreen_overlay.asp */
+/* The Overlay (background) */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 0;
+    width: 100%;
+    margin-top: 80px;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: #FEDCD2; /* Black fallback color */
+    /*background-color: rgba(0,0,0, 0.9);  Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 1.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+#progressBtnGroup{
+    margin: auto;
+    width: 25%;
+}
+
+.progressBtn{
+	background-color: transparent;
+	color: #DF744A;
+	height: 80px;
+    font-weight: bold;
+    width:100%;
+	border: solid #DF744A;
+	border-radius: 5px;
+    margin-top: 10px;
+}
+
+.progressBtn:hover{
+	color: #FEDCD2;
+	background-color: #DF744A;
+}
+
+.gameBtn{
+    float: left;
+	background-color: transparent;
+	color: #DF744A;
+	height: 25px;
+    font-weight: bold;
+    width:49%;
+	border: solid #DF744A;
+	border-radius: 5px;
+    margin-top: 10px;
+}
+
+.gameBtn:hover{
+	color: #8FD8D2;
+	background-color: #DF744A;
+}
+
+h1{
+    color: #DCB239;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#tutorialImg{
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+#fullGameBoard{
+    background-color: #8FD8D2;
+    border: 3px solid #DCB239;
+    width: 40%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 5px 5px 45px 5px;
+    margin-top: 20px;
 }
 
 td {
+    background-color: #FEDCD2;
     border-radius: 50%;
 }
 
-/*Solution Table Items*/
+#solution {
+    margin-top: -5px;
+    margin-left: -5px;
+    padding: 5px;
+    width: 100%;
+    background-color: #DF744A;
+}
 
 .solutionTable {
-    /*display: none;*/
+    width: 90%;
     margin: 0 auto;
 }
 
-.solutionRow {
-
+.solutionCell { 
+    width: 24%;
+    height: auto;
+    padding-top: 24%;
+    border: 3px solid #DCB239;
 }
 
-.solutionCell {
-    width: 100px;
-    height: 100px;
-    border: 3px solid goldenrod;
-    /*display: none;*/
-}
-
-/*Choices Made Table Items*/
-
-#choicesMade {
-    display: inline-block;
+#attemptsTables{
+    width: 100%;
+    margin: 0 auto;
 }
 
 .choicesTable {
-    /*border-collapse: collapse;*/
-}
-
-
-.choicesRow {
+    border-right: 3px solid #DF744A;
+    border-bottom: 6px solid #DF744A;
+    width: 50%;
+    margin: 0 auto;
+    float: left;
+    padding: 5px;
 }
 
 .choicesCell {
-    width: 50px;
-    height: 50px;
-    /*margin: 10px;*/
-    border: 3px solid lavender;
-}
-
-
-/*Are You Right Table Items*/
-
-#areYouRight {
-    display: inline-block;
+    width: 24%;
+    height: auto;
+    padding-top: 24%;
+    border: 3px solid #DCB239;
 }
 
 .rightTable {
-    /*border-collapse: collapse;*/
-    background-color: darkslategrey;
-}
-
-.rightRow {
+    border-left: 3px solid #DF744A;
+    border-bottom: 6px solid #DF744A;
+    width: 50%;
+    margin: 0 auto;
+    float: right;
+    padding: 5px;
 }
 
 .rightCell {
-    width: 50px;
-    height: 50px;
-    border: 3px solid cadetblue;
+    width: 24%;
+    height: auto;
+    padding-top: 24%;
+    border: 3px solid #DCB239;
 }
-
-
-/*Buttons Items (in the form)*/
-
-#buttons {
-    margin: 0 auto;
-}
-
-#removeOne {
-    width: 200px;
-    margin: 10px;
-}
-
-#checkMe {
-    width: 200px;
-    margin: 10px;
-}
-
-/*Optional Choices Table Items*/
 
 .optionalTable {
-    /*border-collapse: collapse;*/
+    width: 95%;
     margin: 0 auto;
-
-}
-
-
-
-.optionalRow {
+    padding-top: 5px;
 }
 
 .optionalCell {
-    width: 70px;
-    height: 70px;
-    /*border: 3px solid indigo;*/
+    width: 16.5%;
+    height: auto;
+    padding-top: 16.5%;
 }
 
-.solutionChoicesCell {
-    width: 70px;
-    height: 70px;
-    /*border: 3px solid indigo;*/
-}
-
-.solutionChoicesTable {
-    /*border-collapse: collapse;*/
-    margin: 0 auto;
-
-}
 /*Colours*/
 
 .blue {
@@ -159,4 +237,20 @@ td {
 
 .black {
     background-color: black;
+}
+
+.right{float:right;}
+
+@media screen and (max-width: 800px) {
+
+  #fullGameBoard{
+      width: 55%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  #fullGameBoard{
+      width: 70%;
+  }
 }
